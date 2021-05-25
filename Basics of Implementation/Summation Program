@@ -1,0 +1,46 @@
+// By Chandramani Kumar
+// Keep moving and must be simple bro!!!!!
+// Espérons le meilleur mais préparez-vous au pire 😎
+
+
+Cpp code :
+
+#include <bits/stdc++.h>
+ 
+using namespace std;
+typedef long long ll;
+#define f(a,b) for(ll i=a;i<b;i++) 
+int main()
+{
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+		ll s=0;
+		ll n,j=1,k,prev,l=2;
+		cin>>n;
+		prev=n;
+		while(1)
+		{
+			k=n/l;
+			if(prev==k)
+			break;
+			else
+			{
+				s+=(prev-k)*j;
+				prev=k;
+				l++;
+				j++;
+			}
+		}
+ 
+		while(prev)
+		{
+			s+=n/prev;
+			prev--;
+		}
+		cout<<s<<endl;
+	}
+ 
+	return 0;
+}
