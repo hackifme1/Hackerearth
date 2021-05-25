@@ -1,0 +1,92 @@
+// By Chandramani Kumar
+// Keep moving and must be simple bro!!!!!
+// Espérons le meilleur mais préparez-vous au pire 😎
+
+
+Cpp code :
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long int ll;
+unordered_map<ll,ll> d,rd;
+
+#define f(a,b) for(ll i=a;i<b;i++) 
+
+void solve(vector<vector<ll>> &ans,ll n,ll row,vector<bool> c,vector<ll> vec)
+  {
+     // vector<ll> vec;
+      if(row==n)
+      {
+          ans.push_back(vec);
+      }
+      
+      for(ll i=0;i<n;i++)
+      {
+          //cout<<row+i<<" "<<row-i+n-1<<endl;
+          if(c[i]==false&&d[row+i]==0&&rd[row-i+n-1]==0)
+          {
+              vec.push_back(i+1);
+            //   ans[row][i]=true;
+              c[i]=true;
+              d[row+i]=1;
+              rd[row-i+n-1]=1;
+              solve(ans,n,row+1,c,vec);
+              vec.pop_back();
+             // ans[row][i]=false;
+              c[i]=false;
+              d[row+i]=0;
+              rd[row-i+n-1]=0;
+          }
+      }
+		
+  }
+  
+bool nQueen(vector<vector<ll>> &res,ll n) {
+        vector<bool> col(n,false);
+      
+        solve(res,n,0,col,{});
+		if(res.size()==0)
+		return false;
+
+		return true;
+    }
+
+
+int main()
+{
+	ll n;
+	cin>>n;
+	vector<vector<ll>> res;
+	if(nQueen(res,n))
+	{
+		ll act_res[n][n];
+		cout<<"YES"<<endl;
+		for(ll i=0;i<n;i++)
+		{
+			for(ll j=0;j<n;j++)
+			{
+				act_res[i][j] = 0;
+				//cout<<res[i][j]<<" ";
+			}
+		}
+
+		for(ll i=0;i<n;i++)
+		{
+			act_res[i][res[0][i]-1]=1;
+		}
+
+		for(ll i=0;i<n;i++)
+		{
+			for(ll j=0;j<n;j++)
+			{
+				cout<<act_res[i][j]<<" ";
+			}
+			cout<<endl;
+		}
+	}
+	else
+	cout<<"NO"<<endl;
+	return 0;
+}
