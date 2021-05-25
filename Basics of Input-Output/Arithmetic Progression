@@ -1,0 +1,21 @@
+// By Chandramani Kumar
+// Keep moving and must be simple bro!!!!!
+// Espérons le meilleur mais préparez-vous au pire 😎
+
+Cpp cdoe :
+
+#include<iostream>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+	long long t,a,b,c;
+	cin>>t;
+	while(t--)
+	{
+		cin>>a>>b>>c;
+	    ll j=abs(2*b-a-c);
+		cout<<(j+1)/2<<endl;
+	}
+	return 0;
+}
