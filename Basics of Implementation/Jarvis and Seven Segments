@@ -1,0 +1,57 @@
+// By Chandramani Kumar
+// Keep moving and must be simple bro!!!!!
+// Espérons le meilleur mais préparez-vous au pire 😎
+
+Cpp code :
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main()
+{
+int t;
+cin >>t;
+for(int j=0;j<t;j++)
+{
+int n;
+cin >>n;
+int ans;
+long long min=1000000000000;
+string s1="1";  
+	
+	for(int j=0;j<n;j++){
+     string s;
+     cin >>s;
+     
+ 
+     int sum=0;
+     int p=s.length();
+     
+     for(int k=0;k<p;k++)
+     {
+     if(s[k]=='0' || s[k]=='6')
+     sum+=6;
+     if(s[k]=='1')
+     sum+=2;
+     if(s[k]=='2' || s[k]=='3' || s[k]=='5')
+     sum+=5;
+     if(s[k]=='4')
+     sum+=4;
+     if(s[k]=='7')
+     sum+=3;
+     if(s[k]=='8')
+     sum+=7;
+     if(s[k]=='9')
+     sum+=6;
+     }
+     if(sum<min)
+     {
+     min=sum;
+      s1=s;
+     }
+    }
+    cout <<s1<<endl;
+}
+ 
+    return 0;
+}
