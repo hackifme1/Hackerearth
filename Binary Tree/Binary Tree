@@ -1,0 +1,93 @@
+// By Chandramani Kumar
+// Keep moving and must be simple bro!!!!!
+// Espérons le meilleur mais préparez-vous au pire 😎
+
+
+// Cpp code :
+
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+#define f(a,b) for(ll i=a;i<b;i++) 
+
+struct node
+{
+	struct node *left,*right;
+	ll val;
+};
+
+struct node* newNode(int data)
+{
+    struct node* node = (struct node*)malloc(sizeof(struct node));
+    node->val = data;
+    node->left = NULL;
+    node->right = NULL;
+ 
+    return (node);
+}
+
+ll hiit(struct node* root)
+{
+	if(root==NULL)
+	{
+		return 0;
+	}
+	ll lh =  hiit(root->left);
+	ll rh =  hiit(root->right);
+	return(1+max(lh,rh));
+}
+
+ll dimitr(struct node* root)
+{
+	if(root==NULL)
+	return 0;
+
+	ll lft_diam = dimitr(root->left);
+	ll rit_diam = dimitr(root->right);
+
+	ll lh = hiit(root->left);
+	ll rh = hiit(root->right);
+
+	return(max(lh+rh+1,max(lft_diam,rit_diam)));
+}
+
+int main()
+{
+    ll T,X;
+	cin>>T>>X;
+	
+	struct node* root = newNode(X);
+    struct node* temp = root;
+
+	ll t = T-1;
+
+	while(t--)
+	{
+		string ch;
+		ll data;
+		cin>>ch>>data;
+		ll i = 0;
+        temp = root;
+
+	    while(ch[i] && temp ){
+		  if(ch[i] == 'L'){
+			if(temp->left == NULL)
+				temp->left = newNode(0);
+			temp = temp->left;
+			}
+			else{
+				if(temp->right == NULL)
+					temp->right = newNode(0);
+					temp = temp->right;
+				}
+				i++;
+			}
+
+            temp->val = data;
+	}
+
+	ll res = dimitr(root);
+	cout<<res;
+	return 0;
+}
